@@ -1,7 +1,7 @@
 # Windows-NirotoolMenu
 A batch tool for fixing Windows 10/11's flaws. ✨ It's packed with registry tweaks and debloat scrpits. Unlike the other tools, NirotoolMenu is lightweight, responsive and it doesn't break Windows's features without you having the control. All the options and scripts are tested if it breaks the system or not.
 
-Inspired by: [ChrisTitusTech/Winutil](https://github.com/ChrisTitusTech/winutil), [RIPTweaks](https://riptweaks.com/free-tweaks/), [CrapFixer](https://github.com/builtbybel/CrapFixer)
+Inspired by: [ChrisTitusTech/Winutil](https://github.com/ChrisTitusTech/winutil), [RIPTweaks](https://riptweaks.com/free-tweaks/), [BuiltByBel/CrapFixer](https://github.com/builtbybel/CrapFixer)
 
 # Installation
 Curl the latest version from CMD:
