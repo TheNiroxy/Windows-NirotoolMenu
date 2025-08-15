@@ -20,3 +20,16 @@ For the actions, like "Reboot", "Download RAM" (don't use that) and "Exit", pres
 <img width="968" height="500" alt="image" src="https://github.com/user-attachments/assets/2ab51ac5-a02a-4b67-ad20-a9ecd8036157" />
 
 In a submenu, select your desired tweak with numbers (1,2,3 etc.) and it will finish it in seconds. When it is finished, it will go back to the submenu that you were previously in. Press X to go back to the main menu.
+
+# System Requirements
+Windows 11 (recommended)
+
+Windows 10
+
+Nothing more, it's just a batch file.
+
+# License
+
+This project is licensed with GPL-3.0
+
+Learn more details in the [LICENSE file](https://github.com/TheNiroxy/Windows-NirotoolMenu/blob/main/LICENSE)
