@@ -35,7 +35,7 @@ color c
 :menu
 cls
 echo ====================================
-echo         NirotoolMenu v1.0
+echo         NirotoolMenu v1.1
 echo ====================================
 echo [1] Hardware Tweaks
 echo [2] Privacy
@@ -1355,7 +1355,7 @@ if errorlevel 1 goto fullcontextmenu
 
 :fullcontextmenu
 cls
-reg.exe add "HKCU\Software\Classes\CLSID{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
+reg.exe add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
 pause
 cls
 goto windowstweaks
@@ -1409,3 +1409,4 @@ reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Explorer" /v "ShowOrHideMo
 pause
 cls
 goto windowstweaks
+
