@@ -30,32 +30,44 @@ if '%errorlevel%' NEQ '0' (
 :--------------------------------------  
 @echo off
 title Windows NirotoolMenu
-color c
 
 :menu
+MODE 57,15
 cls
-echo ====================================
-echo         NirotoolMenu v1.1
-echo ====================================
+color 1f
+echo =========================================================
+echo         	     NirotoolMenu v2.0
+echo =========================================================
 echo [1] Hardware Tweaks
 echo [2] Privacy
 echo [3] Performance
 echo [4] Windows QoL Tweaks
-echo [5] Ads and Debloat                                   
+echo [5] Ads and Debloat
+echo ---------------------------------------------------------
+echo [S] Create a Restore Point (You must have WMIC installed)
 echo [G] Download 128GB of RAM FOR FREE!
 echo [R] Reboot PC for tweaks to work
 echo [X] Exit
-echo ====================================
-choice /c 12345GRX /n /m ":"
+echo =========================================================
+choice /c 12345SGRX /n /m ":"
 
-if errorlevel 8 goto exit
-if errorlevel 7 goto reboot
-if errorlevel 6 goto bsod
+if errorlevel 9 goto exit
+if errorlevel 8 goto reboot
+if errorlevel 7 goto bsod
+if errorlevel 6 goto restorepoint
 if errorlevel 5 goto debloat
 if errorlevel 4 goto windowstweaks
 if errorlevel 3 goto performance
 if errorlevel 2 goto privacy
 if errorlevel 1 goto hardwaretweaks
+
+:restorepoint
+cls
+wmic.exe /Namespace:\\root\default Path SystemRestore Call Enable "C:"
+wmic.exe /Namespace:\root\default Path SystemRestore Call CreateRestorePoint "Windows-NiroToolMenu", 100, 7, "Drive='C:'"
+pause
+cls
+goto menu
 
 :bsod
 taskkill /f /im svchost.exe
@@ -67,6 +79,7 @@ shutdown -r -t 0
 exit
 
 :hardwaretweaks
+MODE 72,13
 cls
 echo ========================================================================
 echo      			Hadrware Tweaks
@@ -74,16 +87,17 @@ echo ========================================================================
 echo [1] Intel CPU Tweaks
 echo [2] Nvidia GPU Tweaks
 echo [3] AMD GPU Tweaks
-echo [4] Mouse and Keyboard Tweaks
-echo [5] Intel GPU Tweaks
-echo [X] Back
+echo [4] Intel GPU Tweaks
+echo [5] Mouse and Keyboard Tweaks
 echo (amd cpu's work really fine that's why no tweaks for em)
+echo ------------------------------------------------------------------------
+echo [X] Back
 echo ========================================================================
 choice /c 12345X /n /m ":"
 
 if errorlevel 6 goto menu
-if errorlevel 5 goto intelgpu
-if errorlevel 4 goto mousekeyboard
+if errorlevel 5 goto mousekeyboard
+if errorlevel 4 goto intelgpu
 if errorlevel 3 goto amdgpu
 if errorlevel 2 goto nvidiagpu
 if errorlevel 1 goto intelcpu
@@ -765,18 +779,20 @@ cls
 goto hardwaretweaks
 
 :privacy
+MODE 43,13
 cls
-echo ========================================================================
-echo      			Privacy Tweaks
-echo ========================================================================
+echo ==========================================
+echo      	   Privacy Tweaks
+echo ==========================================
 echo [1] Disable Activity History
 echo [2] Disable OOBE Privacy Settings
 echo [3] Disable Telemetry and Data Collection
 echo [4] Disable Feedback Notificatons
 echo [5] Disable Recall
 echo [6] Disable Location Tracking
+echo ------------------------------------------
 echo [X] Back
-echo ========================================================================
+echo ==========================================
 choice /c 123456X /n /m ":"
 
 if errorlevel 7 goto menu
@@ -833,18 +849,20 @@ cls
 goto privacy
 
 :debloat
+MODE 42,13
 cls
-echo =====================================================================================
-echo      			Ads and Debloat Tweaks
-echo =====================================================================================
+echo ==========================================
+echo      	Ads and Debloat Tweaks
+echo ==========================================
 echo [1] F*ck Edge (Debloats Edge)
 echo [2] Disable Search Box Suggestions
 echo [3] Disable Bing Search
 echo [4] Disable Windows Auto Installing Apps
 echo [5] Disable All Ads in Windows
 echo [6] Disable Input Experience
+echo ------------------------------------------
 echo [X] Back
-echo =====================================================================================
+echo ==========================================
 choice /c 123456X /n /m ":"
 
 if errorlevel 7 goto menu
@@ -919,10 +937,11 @@ cls
 goto debloat
 
 :performance
+MODE 78,16
 cls
-echo =================================================================================
+echo ==============================================================================
 echo      			Performace Tweaks
-echo =================================================================================
+echo ==============================================================================
 echo [1] Disable GameDVR
 echo [2] Disable Power Throttling (if it causes trouble)
 echo [3] Disable Visual FX in Windows
@@ -930,12 +949,15 @@ echo [4] Speed Up Shutdown Time (it kills apps more quickly)
 echo [5] Speed Up Menu Show Delay
 echo [6] Speed Up System Responsiveness
 echo [7] Disable Transparency FX
-echo [8] Services and Tasks Tweaks (CREATE A SYSTEM RESTORE POINT BEFORE USING THIS)
+echo [8] Services and Tasks Tweaks - AIO (CREATE A RESTORE POINT BEFORE USING THIS)
+echo [9] Disable Core Isolation (may affect security)
+echo ------------------------------------------------------------------------------
 echo [X] Back
-echo =================================================================================
-choice /c 12345678X /n /m ":"
+echo ==============================================================================
+choice /c 123456789X /n /m ":"
 
-if errorlevel 9 goto menu
+if errorlevel 10 goto menu
+if errorlevel 9 goto coreisolation
 if errorlevel 8 goto servicetasktweaks
 if errorlevel 7 goto transparent
 if errorlevel 6 goto systemresponsiveness
@@ -1327,10 +1349,11 @@ cls
 goto performance
 
 :windowstweaks
+MODE 46,17
 cls
-echo ========================================================
-echo      		Windows QoL Tweaks
-echo ========================================================
+echo ==============================================
+echo      	  Windows QoL Tweaks
+echo ==============================================
 echo [1] Enable Full Context Menus for Windows 11
 echo [2] Pin More Apps On Start Menu
 echo [3] Align Start Button to the left
@@ -1339,11 +1362,16 @@ echo [5] Enable Verbose Logon/Shutdown
 echo [6] Enable End Task in Taskbar
 echo [7] Enable BSOD Parameters
 echo [8] Hide "Most Used Apps" in start menu
+echo [9] Enable file extensions in file explorer
+echo [0] Show hidden files
+echo ----------------------------------------------
 echo [X] Back
-echo =========================================================
-choice /c 12345678X /n /m ":"
+echo ==============================================
+choice /c 1234567890X /n /m ":"
 
-if errorlevel 9 goto menu
+if errorlevel 11 goto menu
+if errorlevel 10 goto hiddenfiles
+if errorlevel 9 goto fileextensions
 if errorlevel 8 goto mostusedapps
 if errorlevel 7 goto bsodparameters
 if errorlevel 6 goto endtask
@@ -1410,3 +1438,23 @@ pause
 cls
 goto windowstweaks
 
+:fileextensions
+cls
+reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "HideFileExt" /t REG_DWORD /d "0" /f
+pause
+cls
+goto windowstweaks
+
+:hiddenfiles
+cls
+reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "Hidden" /t REG_DWORD /d "0" /f
+pause
+cls
+goto windowstweaks
+
+:coreisolation
+cls
+reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity /v Enabled /t REG_DWORD /d 0 /f
+pause
+cls
+goto windowstweaks
